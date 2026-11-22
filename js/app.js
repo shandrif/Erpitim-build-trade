@@ -106,8 +106,12 @@ const trStatic = () => { if (!A) return;
 /* ---------- pages ---------- */
 if (page === "home") {
   $("#h1").innerHTML = (A ? ["الأغذية", "والمشروبات"] : ["Food &", "Beverages"]).map(l => `<span class="l"><span>${l}</span></span>`).join("");
-  const pick = (s, d) => { const b = bySlug(s); return `<a class="fr" href="brand.html?b=${b.slug}" style="--d:${d}s"><img src="${b.photo}" alt="" width="${b.photoSize[0]}" height="${b.photoSize[1]}" ${d === .15 ? 'fetchpriority="high"' : ""} decoding="async"><b>${b.name}</b></a>`; };
+  /* hero tiles: a short looping video per brand (muted); a click opens that brand. Plays only while on screen. */
+  const pick = (s, d) => { const b = bySlug(s); return `<a class="fr vt" href="brand.html?b=${b.slug}" style="--d:${d}s" aria-label="${esc(b.name)}"><video muted loop playsinline preload="none" poster="video/tiles/${b.slug}.jpg" data-src="video/tiles/${b.slug}.mp4" aria-hidden="true"></video><b>${b.name}</b></a>`; };
   $("#mosaic").innerHTML = `<div data-par="-.05">${pick("alpe-pragas", .15)}${pick("alpeker", .36)}</div><div class="col2" data-par=".06">${pick("alps-coffee", .28)}${pick("pan", .44)}</div>`;
+  { const still = matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const vio = new IntersectionObserver(es => es.forEach(e => { const v = e.target; if (e.isIntersecting) { if (!v.src) v.src = v.dataset.src; const p = v.play(); if (p && p.catch) p.catch(() => {}); } else v.pause(); }), { threshold: .25 });
+    if (!still) $$("#mosaic video").forEach(v => vio.observe(v)); }
   const cats = S.categories.filter(c => S.brands.some(b => b.category === c));
   $("#hmeta").textContent = A ? `${brandsN(S.brands.length)} شريكة في ${nWord(cats.length, "فئة واحدة", "فئتين", "فئات", "فئة")}، و${items(nItems)} لاستكشافها.` : `${S.brands.length} partner brands across ${cats.length} categories, ${nItems} items to explore.`;
   $("#logos").innerHTML = `<div>${[0, 1].map(k => S.brands.map(b => `<img src="${b.logo}" alt="${k ? "" : b.name}" loading="lazy" decoding="async">`).join("")).join("")}</div>`;
