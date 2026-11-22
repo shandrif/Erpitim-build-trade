@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><script>try{var q=new URLSearchParams(location.search).get("lang");if(q)localStorage.setItem("lang",q);var l=q||localStorage.getItem("lang");if(l==="ar"){var h=document.documentElement;h.lang="ar";h.dir="rtl";var k=document.createElement("link");k.rel="stylesheet";k.href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&display=swap";document.head.appendChild(k)}}catch(e){}</script><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="theme-color" content="#0c0638">
+<title>DEMO: video tiles | Food & Beverages | Arpitim BuildTrade by Cognivra</title><meta name="robots" content="noindex"><meta name="description" content="Food & Beverages: Retail, distribution and HoReCa. Premium European brands and every item they sell.">
+<link rel="icon" type="image/png" sizes="64x64" href="img/favicon-64.png"><link rel="apple-touch-icon" href="img/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Plus+Jakarta+Sans:wght@500;600;700;800&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css"></head>
+<body data-page="home"><header id="hdr"></header><main>
+
+<section class="hero"><div class="hero-video" aria-hidden="true"><video id="hv" autoplay muted loop playsinline webkit-playsinline preload="auto" poster="video/hero-poster.jpg"><source src="video/hero.mp4" type="video/mp4"></video></div><div class="hero-grid">
+  <div class="hero-copy">
+   <h1 id="h1"><span class="l"><span>Food &amp;</span></span><span class="l"><span>Beverages</span></span></h1>
+   <p class="lede">Retail, distribution and HoReCa. Explore the partner brands and every item they sell.</p>
+   <div class="acts"><a class="btn gold" href="#brands">Explore the brands</a><a class="btn line" href="products.html">Browse every item</a></div>
+   <p class="hmeta" id="hmeta"></p>
+  </div>
+  <div class="mosaic" id="mosaic"></div></div>
+</section>
+<div class="logos" id="logos" role="img" aria-label="Logos of the partner brands"></div>
+<section class="sec pad"><p class="stmt" id="stmt">Loading</p><div class="sectors" id="sectors"></div></section>
+<section id="brands"><div class="shead pad" style="padding-bottom:0"><h2>The brands</h2><p>Open a brand for its full range, or go straight to its own website.</p></div><div id="orbit"></div></section>
+<section class="strip sec alt">
+ <div class="shead pad"><h2>What we sell</h2><a class="link" href="products.html">See every item <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M2 10 10 2M4 2h6v6"/></svg></a></div>
+ <div class="track" id="track"></div>
+</section>
+<section class="sec pad" id="formats"><div class="shead"><h2 id="fmtTitle"></h2><p id="fmtIntro"></p></div><div class="fmts" id="fmts"></div></section>
+<section class="sec pad alt"><div class="shead"><h2 id="occTitle"></h2><p id="occIntro"></p></div><div class="occs" id="occs"></div></section>
+<section class="band sec pad"><div class="in"><h2>Interested in a brand? Talk to us.</h2><a class="btn gold" href="contact.html">Get in touch</a></div></section>
+</main><footer id="ftr"></footer><script src="js/data.js"></script><script src="js/content.js"></script><script>if(document.documentElement.lang==="ar")document.write('<script src="js/ar.js"><\/script>')</script><script src="js/vendor/gsap.min.js"></script><script src="js/vendor/ScrollTrigger.min.js"></script><script src="js/orbit.js"></script><script src="js/app.js"></script><script>
+(function(){
+ var T=[["alpe-pragas","Alpe Pragas",.15],["alpeker","Alpeker",.36],["alps-coffee","Alps Coffee",.28],["pan","Pan",.44]];
+ var tile=function(t){return '<a class="fr vt" href="brand.html?b='+t[0]+'" style="--d:'+t[2]+'s" aria-label="'+t[1]+'"><video muted loop playsinline preload="metadata" poster="video/tiles/'+t[0]+'.jpg" data-src="video/tiles/'+t[0]+'.mp4"></video><b>'+t[1]+'</b></a>'};
+ var m=document.getElementById("mosaic");
+ m.innerHTML='<div data-par="-.05">'+tile(T[0])+tile(T[1])+'</div><div class="col2" data-par=".06">'+tile(T[2])+tile(T[3])+'</div>';
+ var vs=[].slice.call(m.querySelectorAll("video"));
+ var io=new IntersectionObserver(function(es){es.forEach(function(e){var v=e.target;if(e.isIntersecting){if(!v.src)v.src=v.dataset.src;var p=v.play();if(p&&p.catch)p.catch(function(){})}else v.pause()})},{threshold:.25});
+ vs.forEach(function(v){io.observe(v)});
+})();
+</script>
+<style>.fr video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;animation:frimg 1.2s var(--ease) both;animation-delay:var(--d)}
+.fr.vt{transition:transform .25s var(--ease),box-shadow .25s}
+@media (hover:hover) and (pointer:fine){.fr.vt:hover{transform:translateY(-4px);box-shadow:0 18px 40px -16px rgba(0,0,0,.6)}}
+.fr.vt:active{transform:scale(.98)}
+.demo-flag{position:fixed;z-index:60;inset-inline-end:14px;bottom:14px;font:600 12px var(--ui);background:#3522e8;color:#fff;padding:8px 12px;border-radius:999px;box-shadow:0 6px 20px rgba(0,0,0,.35);pointer-events:none}</style>
+<div class="demo-flag">DEMO: video tiles (not the live home page)</div><script>(function(){var v=document.getElementById("hv");if(!v)return;v.muted=true;v.defaultMuted=true;if(matchMedia("(prefers-reduced-motion: reduce)").matches){v.removeAttribute("loop");v.removeAttribute("autoplay");v.classList.add("on");v.pause();return}var on=function(){v.classList.add("on")};v.addEventListener("playing",on);var go=function(){var p=v.play();if(p&&p.then)p.then(on,function(){})};v.addEventListener("timeupdate",function t(){if(v.currentTime>0){on();v.removeEventListener("timeupdate",t)}});if(!v.paused&&v.currentTime>0)on();go();v.addEventListener("loadeddata",go);["touchstart","pointerdown","scroll","click"].forEach(function(e){addEventListener(e,function f(){if(v.paused)go();else removeEventListener(e,f)},{passive:true})});document.addEventListener("visibilitychange",function(){if(!document.hidden&&v.paused)go()})})()</script></body></html>
