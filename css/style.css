@@ -528,3 +528,9 @@ html[dir=rtl] .hero-video::after{background:linear-gradient(270deg,rgba(12,6,56,
 @media (max-width:760px){.hero-video video.on{opacity:1}.hero-video::after{background:linear-gradient(180deg,rgba(12,6,56,.45),rgba(12,6,56,.3) 55%,rgba(12,6,56,.85))}}
 
 .hero h1,.hero .lede,.hero .hmeta{text-shadow:0 2px 18px rgba(12,6,56,.55)}
+
+/* footer banner (labels / Cognivra / Südtirol) */
+.ftr a.fbanner{display:block;padding:0;margin:clamp(26px,4vw,44px) auto 0;max-width:1100px;border-radius:14px;overflow:hidden;background:#fff;transition:transform .2s var(--ease),opacity .2s}
+.ftr .fbanner img{width:100%;height:auto;display:block}
+.ftr a.fbanner:active{transform:scale(.99)}
+@media (hover:hover) and (pointer:fine){.ftr a.fbanner:hover{opacity:.92}}
